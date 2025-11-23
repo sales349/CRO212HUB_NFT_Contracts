@@ -1,0 +1,131 @@
+# SECURITY NOTES – CRO212HUB Smart Contracts
+
+Project: CRO212HUB – NFT Generator and Launchpad  
+Repo: CRO212HUB_NFT_Contracts  
+File: SECURITY_NOTES.md  
+Owner: TO FILL IN BY DEV (name, GitHub handle)  
+Last updated: TO FILL IN BY DEV (YYYY-MM-DD)
+
+## Purpose
+
+This file defines security expectations for the **smart contracts** used by the CRO212HUB NFT Generator and Launchpad on Cronos.
+
+These contracts will handle:
+- Minting NFTs.
+- Supply limits.
+- Revenue splitting between wallets.
+- Optional whitelist logic.
+
+They must NOT contain any hidden backdoors or unexpected behaviors.
+
+If code and this document differ, the difference must be fixed.
+
+---
+
+## 1. Contract Types and Roles
+
+Planned contracts:
+- Main ERC 721 style NFT collection contract template.
+- Optional helper contracts if needed (for whitelist, payment split, etc).
+
+Admin / Owner roles:
+- Owner / Admin functions must be clearly named and documented.
+- Admin powers may include:
+  - Setting base URI.
+  - Pausing and unpausing mint (if implemented).
+  - Updating mint price (if agreed).
+  - Withdrawing funds according to the revenue split.
+
+Admin powers must NOT include:
+- Draining user funds beyond what is paid as mint price.
+- Arbitrarily changing balances of already minted tokens.
+
+Any special roles (for example, platform owner) must be documented here:
+- TO FILL IN BY DEV
+
+---
+
+## 2. Revenue Split Rules
+
+The mint contract will include a revenue split between named wallets, for example:
+- Project treasury wallet.
+- CRO212HUB platform wallet.
+- Optional additional wallet (LP, community, etc).
+
+Rules:
+- The revenue split logic must be visible and readable in the contract.
+- No hidden extra wallets or shadow percentages.
+- Any wallet addresses used for revenue must:
+  - Be either constructor parameters or clear constants.
+  - Be documented in comments.
+
+If upgradeable patterns are used (proxy, etc), this must be:
+- 100 percent documented.
+- Accepted by the project owner in advance.
+
+---
+
+## 3. Supply and Minting Rules
+
+The contract must enforce:
+- A clear `maxSupply`.
+- Optional `maxPerWallet` or similar per address limit.
+- Mint price in CRO.
+
+Rules:
+- Minting should revert if:
+  - maxSupply would be exceeded.
+  - maxPerWallet would be exceeded.
+  - Not enough CRO is sent.
+- If whitelist minting is implemented:
+  - The whitelist logic must be simple and visible (for example Merkle tree, standard pattern).
+  - No secret “bypass” for specific addresses.
+
+---
+
+## 4. Hidden Behavior and Backdoors
+
+The contracts must NOT contain:
+- Functions that send funds to unlisted wallets.
+- Undocumented owner-only functions that:
+  - Transfer all NFTs away from users.
+  - Change ownership to a hard-coded address.
+  - Disable transfers permanently without clear reason.
+
+Any “emergency” or “rescue” function must:
+- Be clearly named (for example `emergencyWithdraw`, `rescueTokens`).
+- Be documented in comments with an explanation of when and how it is expected to be used.
+
+---
+
+## 5. Deployment and Networks
+
+Target network:
+- Cronos testnet first.
+- Later Cronos mainnet when ready.
+
+The developer must:
+- Provide clear deployment scripts or instructions.
+- Document the testnet contract addresses in this file once deployed:
+
+Testnet contract addresses:
+- TO FILL IN BY DEV
+
+Mainnet contract addresses (when deployed later):
+- TO FILL IN BY DEV
+
+---
+
+## 6. Auditing and Changes
+
+Any major change to:
+- Revenue split logic
+- Supply rules
+- Admin powers
+
+Must be:
+- Documented here in a short note.
+- Communicated to the project owner.
+
+Known security notes and decisions:
+- TO FILL IN BY DEV

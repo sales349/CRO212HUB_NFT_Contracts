@@ -9,18 +9,18 @@ const hre = require("hardhat");
 
 // ========= CONFIGURATION =========
 
-// TODO: Set your deployed contract address
-const CONTRACT_ADDRESS = "0xYourDeployedContractAddress";
+// Deployed contract address
+const CONTRACT_ADDRESS = "0x97A26591f2263490BfADd0EeD6651CB50B1b6D20";
 
 // Choose the action to perform (uncomment one):
-const ACTION = "setSaleActive";
+// const ACTION = "setBaseURI";
+// const ACTION = "setSaleActive";
 // const ACTION = "setWhitelistSaleActive";
 // const ACTION = "setMintPrice";
 // const ACTION = "setMaxPerWallet";
-// const ACTION = "setBaseURI";
 // const ACTION = "setWhitelistMerkleRoot";
 // const ACTION = "withdraw";
-// const ACTION = "getInfo";
+const ACTION = "getInfo";
 
 // Action parameters (set based on your action):
 const PARAMS = {
@@ -28,13 +28,13 @@ const PARAMS = {
   active: true,
 
   // For setMintPrice (in CRO)
-  newPrice: "30",
+  newPrice: "1",
 
   // For setMaxPerWallet
-  newMax: 5,
+  newMax: 3,
 
   // For setBaseURI
-  baseURI: "ipfs://QmYourMetadataHash/",
+  baseURI: "https://metadata.liquidfi.app/hypervasion-4e4b03b4/json/",
 
   // For setWhitelistMerkleRoot
   merkleRoot: "0x0000000000000000000000000000000000000000000000000000000000000000",
@@ -100,8 +100,8 @@ async function main() {
 
     case "withdraw":
       console.log("Withdrawing funds...");
-      const balance = await hre.ethers.provider.getBalance(CONTRACT_ADDRESS);
-      console.log("Contract balance:", hre.ethers.formatEther(balance), "CRO");
+      const contractBalance = await hre.ethers.provider.getBalance(CONTRACT_ADDRESS);
+      console.log("Contract balance:", hre.ethers.formatEther(contractBalance), "CRO");
       const tx7 = await collection.withdraw();
       await tx7.wait();
       console.log("Done! Funds withdrawn and split to wallets.");

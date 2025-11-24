@@ -14,26 +14,26 @@ async function main() {
   console.log("Network:", hre.network.name);
   console.log("======================================");
 
-  // ========= TODO: FILL THESE VALUES =========
+  // ========= DEPLOYMENT CONFIGURATION =========
 
   // Collection info
-  const NAME = "YOUR_COLLECTION_NAME";        // e.g. "Blood Oracles Genesis"
-  const SYMBOL = "YOUR_SYMBOL";               // e.g. "ORACLE"
+  const NAME = "TEST COLLECTION";
+  const SYMBOL = "TEST";
 
   // Supply and minting settings
-  const MAX_SUPPLY = 3500;                    // e.g. 3500
-  const MINT_PRICE_WEI = hre.ethers.parseEther("30"); // e.g. 30 CRO
-  const MAX_PER_WALLET = 5;                   // per wallet cap
+  const MAX_SUPPLY = 100;
+  const MINT_PRICE_WEI = hre.ethers.parseEther("1"); // 1 CRO
+  const MAX_PER_WALLET = 3;
 
   // Wallets (must be valid EVM addresses)
-  const TREASURY_WALLET = "0xYourProjectTreasuryWalletHere";
-  const PLATFORM_WALLET = "0xYourCRO212PlatformWalletHere";
-  const COMMUNITY_WALLET = "0x0000000000000000000000000000000000000000"; // or a real address
+  const TREASURY_WALLET = "0xda539ce323cfdbe92937197d3364d288bf0ae5a7";
+  const PLATFORM_WALLET = "0xda539ce323cfdbe92937197d3364d288bf0ae5a7";
+  const COMMUNITY_WALLET = "0x0000000000000000000000000000000000000000";
 
   // Basis points for revenue split (must sum to 10000)
-  const TREASURY_BPS = 9000;   // 90%
-  const PLATFORM_BPS = 1000;   // 10%
-  const COMMUNITY_BPS = 0;     // 0% for now
+  const TREASURY_BPS = 9500;   // 95%
+  const PLATFORM_BPS = 500;    // 5%
+  const COMMUNITY_BPS = 0;     // 0%
 
   // ===========================================
 

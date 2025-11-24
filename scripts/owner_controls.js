@@ -13,14 +13,14 @@ const hre = require("hardhat");
 const CONTRACT_ADDRESS = "0x97A26591f2263490BfADd0EeD6651CB50B1b6D20";
 
 // Choose the action to perform (uncomment one):
-// const ACTION = "setBaseURI";
+const ACTION = "setBaseURI";
 // const ACTION = "setSaleActive";
 // const ACTION = "setWhitelistSaleActive";
 // const ACTION = "setMintPrice";
 // const ACTION = "setMaxPerWallet";
 // const ACTION = "setWhitelistMerkleRoot";
 // const ACTION = "withdraw";
-const ACTION = "getInfo";
+// const ACTION = "getInfo";
 
 // Action parameters (set based on your action):
 const PARAMS = {
@@ -34,7 +34,8 @@ const PARAMS = {
   newMax: 3,
 
   // For setBaseURI
-  baseURI: "https://metadata.liquidfi.app/hypervasion-4e4b03b4/json/",
+  // baseURI: "https://metadata.liquidfi.app/hypervasion-4e4b03b4/json/",
+  baseURI: "https://ipfs.io/ipfs/bafybeieqhbrhncc3s2xvark2vcppzd473tnsdsdoz2fk6mldw7q62ebkxy/",
 
   // For setWhitelistMerkleRoot
   merkleRoot: "0x0000000000000000000000000000000000000000000000000000000000000000",
